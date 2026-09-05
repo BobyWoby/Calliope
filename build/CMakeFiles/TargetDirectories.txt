@@ -1,0 +1,7 @@
+/home/bobywoby/dev/c++/calliope/build/CMakeFiles/calliope.dir
+/home/bobywoby/dev/c++/calliope/build/CMakeFiles/edit_cache.dir
+/home/bobywoby/dev/c++/calliope/build/CMakeFiles/rebuild_cache.dir
+/home/bobywoby/dev/c++/calliope/build/CMakeFiles/list_install_components.dir
+/home/bobywoby/dev/c++/calliope/build/CMakeFiles/install.dir
+/home/bobywoby/dev/c++/calliope/build/CMakeFiles/install/local.dir
+/home/bobywoby/dev/c++/calliope/build/CMakeFiles/install/strip.dir
