@@ -1,28 +1,15 @@
 cmake_minimum_required(VERSION 3.16)
 project(calliope LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED true)
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 include(FetchContent)
-
-
-# set the output directory for built objects.
-# This makes sure that the dynamic library goes into the build directory automatically.
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/$<CONFIGURATION>")
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/$<CONFIGURATION>")
-
-
-add_executable(calliope 
-    main.cpp 
-    # AudioProcessor.cpp CommandProcessor.cpp
-    # grammar-parser.cpp common.cpp 
-    # ${WHISPER_DIR}/src/whisper.cpp 
-)
-
-set_target_properties(calliope PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/build"
-)
-# target_include_directories(calliope PRIVATE ${WHISPER_DIR}/include)
-# target_link_libraries(calliope PRIVATE whisper ${CMAKE_THREAD_LIBS_INIT})
-# target_link_libraries(calliope PRIVATE SDL3::SDL3)
-install(TARGETS calliope RUNTIME)
+set(WHISPER_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+set(WHISPER_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+set(WHISPER_BUILD_SERVER OFF CACHE BOOL "" FORCE)
+FetchContent_Declare(whispercpp GIT_REPOSITORY https://github.com/ggml-org/whisper.cpp.git GIT_TAG v1.8.3 GIT_SHALLOW TRUE)
+FetchContent_MakeAvailable(whispercpp)
+find_package(ALSA REQUIRED)
+add_executable(calliope main.cpp)
+target_link_libraries(calliope PRIVATE whisper ALSA::ALSA)
+target_compile_definitions(calliope PRIVATE CALLIOPE_MODEL_PATH="${CMAKE_SOURCE_DIR}/vendors/whisper-medium.en/ggml-medium.en.bin")
+set_target_properties(calliope PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")

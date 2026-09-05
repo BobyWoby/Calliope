@@ -1,8 +1,13 @@
-build/calliope: \
+calliope: \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/Scrt1.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/crti.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/crtbeginS.o \
   CMakeFiles/calliope.dir/main.cpp.o \
+  _deps/whispercpp-build/src/libwhisper.so.1.8.3 \
+  /usr/lib/libasound.so \
+  _deps/whispercpp-build/ggml/src/libggml.so.0.9.5 \
+  _deps/whispercpp-build/ggml/src/libggml-cpu.so.0.9.5 \
+  _deps/whispercpp-build/ggml/src/libggml-base.so.0.9.5 \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/libstdc++.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/libm.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/libm.so \
@@ -33,7 +38,9 @@ build/calliope: \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/libgcc.a \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/crtendS.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/crtn.o \
-  /usr/lib/ld-linux-x86-64.so.2
+  /usr/lib/ld-linux-x86-64.so.2 \
+  /usr/lib32/libgomp.so.1 \
+  /usr/lib/libgomp.so.1
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/Scrt1.o:
 
@@ -42,6 +49,16 @@ build/calliope: \
 /usr/lib/gcc/x86_64-pc-linux-gnu/16/crtbeginS.o:
 
 CMakeFiles/calliope.dir/main.cpp.o:
+
+_deps/whispercpp-build/src/libwhisper.so.1.8.3:
+
+/usr/lib/libasound.so:
+
+_deps/whispercpp-build/ggml/src/libggml.so.0.9.5:
+
+_deps/whispercpp-build/ggml/src/libggml-cpu.so.0.9.5:
+
+_deps/whispercpp-build/ggml/src/libggml-base.so.0.9.5:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/16/libstdc++.so:
 
@@ -104,3 +121,7 @@ CMakeFiles/calliope.dir/main.cpp.o:
 /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/crtn.o:
 
 /usr/lib/ld-linux-x86-64.so.2:
+
+/usr/lib32/libgomp.so.1:
+
+/usr/lib/libgomp.so.1:

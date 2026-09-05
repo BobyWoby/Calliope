@@ -2,8 +2,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/calliope.dir/link.d"
   "CMakeFiles/calliope.dir/main.cpp.o"
   "CMakeFiles/calliope.dir/main.cpp.o.d"
-  "build/calliope"
-  "build/calliope.pdb"
+  "calliope"
+  "calliope.pdb"
 )
 
 # Per-language clean rules from dependency scanning.
