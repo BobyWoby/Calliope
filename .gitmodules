@@ -1,0 +1,6 @@
+[submodule "vendors/s1-mini"]
+	path = vendors/s1-mini
+	url = git@hf.co:superwhisper/s1-mini
+[submodule "vendors/whisper-small.en"]
+	path = vendors/whisper-small.en
+	url = git@hf.co:openai/whisper-small.en
