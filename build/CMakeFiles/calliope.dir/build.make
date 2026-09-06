@@ -100,7 +100,9 @@ calliope: _deps/whispercpp-build/src/libwhisper.so.1.8.3
 calliope: /usr/lib/libasound.so
 calliope: _deps/whispercpp-build/ggml/src/libggml.so.0.9.5
 calliope: _deps/whispercpp-build/ggml/src/libggml-cpu.so.0.9.5
+calliope: _deps/whispercpp-build/ggml/src/ggml-cuda/libggml-cuda.so.0.9.5
 calliope: _deps/whispercpp-build/ggml/src/libggml-base.so.0.9.5
+calliope: /opt/cuda/targets/x86_64-linux/lib/stubs/libcuda.so
 calliope: CMakeFiles/calliope.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/bobywoby/dev/c++/calliope/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable calliope"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/calliope.dir/link.txt --verbose=$(VERBOSE)

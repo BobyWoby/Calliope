@@ -21,6 +21,7 @@
 #include <sys/ioctl.h>
 #include <sys/wait.h>
 #include <unistd.h>
+#include <utility>
 #include <vector>
 #include <whisper.h>
 
@@ -31,6 +32,7 @@ constexpr char keybind_file[] = "keybinds.conf";
 struct Keybinds {
     std::vector<std::string> trigger {"RIGHTCTRL"};
     std::vector<std::string> exit {"MOD", "DELETE"};
+    bool use_gpu = false;
 };
 
 bool test_bit(const unsigned long* bits, unsigned int bit) {
@@ -85,6 +87,15 @@ std::optional<std::vector<std::string>> parse_combination(const std::string& val
     return keys;
 }
 
+std::optional<bool> parse_boolean(std::string value) {
+    value = trim(std::move(value));
+    for (char& character : value)
+        character = static_cast<char>(std::tolower(static_cast<unsigned char>(character)));
+    if (value == "true" || value == "yes" || value == "on" || value == "1") return true;
+    if (value == "false" || value == "no" || value == "off" || value == "0") return false;
+    return std::nullopt;
+}
+
 // This intentionally reads the file for every keyboard event, allowing live edits.
 Keybinds load_keybinds() {
     Keybinds keybinds;
@@ -99,7 +110,12 @@ Keybinds load_keybinds() {
         std::string name = trim(line.substr(0, equals));
         for (char& character : name)
             character = static_cast<char>(std::tolower(static_cast<unsigned char>(character)));
-        const auto combination = parse_combination(line.substr(equals + 1));
+        const std::string value = line.substr(equals + 1);
+        if (name == "gpu") {
+            if (const auto enabled = parse_boolean(value)) keybinds.use_gpu = *enabled;
+            continue;
+        }
+        const auto combination = parse_combination(value);
         if (!combination) continue;
 
         if (name == "trigger") keybinds.trigger = *combination;
@@ -251,8 +267,10 @@ public:
     void paste() {
         if (!active_) return;
         emit(KEY_LEFTCTRL, 1);
+        emit(KEY_LEFTSHIFT, 1);
         emit(KEY_V, 1);
         emit(KEY_V, 0);
+        emit(KEY_LEFTSHIFT, 0);
         emit(KEY_LEFTCTRL, 0);
     }
 
@@ -365,6 +383,43 @@ bool copy_to_clipboard(const std::string& text) {
     return waitpid(pid, &status, 0) == pid && WIFEXITED(status) && WEXITSTATUS(status) == 0;
 }
 
+std::optional<std::string> read_clipboard() {
+    int pipe_fds[2];
+    if (pipe(pipe_fds) != 0) return std::nullopt;
+    const pid_t pid = fork();
+    if (pid < 0) {
+        close(pipe_fds[0]);
+        close(pipe_fds[1]);
+        return std::nullopt;
+    }
+    if (pid == 0) {
+        dup2(pipe_fds[1], STDOUT_FILENO);
+        close(pipe_fds[0]);
+        close(pipe_fds[1]);
+        execlp("wl-paste", "wl-paste", "--no-newline", nullptr);
+        _exit(127);
+    }
+
+    close(pipe_fds[1]);
+    std::string contents;
+    std::array<char, 4096> buffer {};
+    while (true) {
+        const ssize_t bytes_read = read(pipe_fds[0], buffer.data(), buffer.size());
+        if (bytes_read > 0) contents.append(buffer.data(), bytes_read);
+        else if (bytes_read == 0) break;
+        else if (errno != EINTR) {
+            close(pipe_fds[0]);
+            waitpid(pid, nullptr, 0);
+            return std::nullopt;
+        }
+    }
+    close(pipe_fds[0]);
+    int status = 0;
+    if (waitpid(pid, &status, 0) != pid || !WIFEXITED(status) || WEXITSTATUS(status) != 0)
+        return std::nullopt;
+    return contents;
+}
+
 bool has_audible_signal(const std::vector<float>& audio) {
     if (audio.size() < WHISPER_SAMPLE_RATE / 4) return false;
 
@@ -378,14 +433,14 @@ bool has_audible_signal(const std::vector<float>& audio) {
     return peak >= 0.01f && rms >= 0.002f;
 }
 
-void transcribe(const std::vector<float>& audio, VirtualKeyboard& keyboard) {
+void transcribe(const std::vector<float>& audio, VirtualKeyboard& keyboard, bool use_gpu) {
     if (audio.empty()) { std::fprintf(stderr, "No microphone audio captured.\n"); return; }
     if (!has_audible_signal(audio)) {
         std::fprintf(stderr, "Recording was too short or silent; nothing will be pasted.\n");
         return;
     }
     whisper_context_params context_params = whisper_context_default_params();
-    context_params.use_gpu = false;
+    context_params.use_gpu = use_gpu;
     whisper_context* context = whisper_init_from_file_with_params(CALLIOPE_MODEL_PATH, context_params);
     if (!context) { std::fprintf(stderr, "Cannot load whisper model: %s\n", CALLIOPE_MODEL_PATH); return; }
     whisper_full_params params = whisper_full_default_params(WHISPER_SAMPLING_GREEDY);
@@ -404,9 +459,14 @@ void transcribe(const std::vector<float>& audio, VirtualKeyboard& keyboard) {
             whisper_free(context);
             return;
         }
+        const auto original_clipboard = read_clipboard();
         if (copy_to_clipboard(text)) {
             std::this_thread::sleep_for(std::chrono::milliseconds(50));
             keyboard.paste();
+            // Let the focused application request the clipboard before restoring it.
+            std::this_thread::sleep_for(std::chrono::milliseconds(150));
+            if (original_clipboard && !copy_to_clipboard(*original_clipboard))
+                std::fprintf(stderr, "Could not restore the previous clipboard contents.\n");
         } else {
             std::fprintf(stderr, "Clipboard unavailable; typing transcription directly.\n");
             keyboard.type(text);
@@ -477,7 +537,7 @@ int main() {
         } else if (!trigger_now && trigger_active) {
             recording = false;
             recorder.join();
-            transcribe(audio, virtual_keyboard);
+            transcribe(audio, virtual_keyboard, keybinds.use_gpu);
         }
         trigger_active = trigger_now;
     }

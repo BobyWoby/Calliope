@@ -6,6 +6,7 @@
 		"/home/bobywoby/dev/c++/calliope/build/_deps/whispercpp-build/ggml/cmake_install.cmake",
 		"/home/bobywoby/dev/c++/calliope/build/_deps/whispercpp-build/ggml/src/cmake_install.cmake",
 		"/home/bobywoby/dev/c++/calliope/build/_deps/whispercpp-build/ggml/src/ggml-cpu/cmake_install.cmake",
+		"/home/bobywoby/dev/c++/calliope/build/_deps/whispercpp-build/ggml/src/ggml-cuda/cmake_install.cmake",
 		"/home/bobywoby/dev/c++/calliope/build/_deps/whispercpp-build/src/cmake_install.cmake"
 	],
 	"Parallel" : false

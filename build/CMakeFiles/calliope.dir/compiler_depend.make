@@ -193,6 +193,7 @@ CMakeFiles/calliope.dir/main.cpp.o: /home/bobywoby/dev/c++/calliope/main.cpp \
   /usr/include/c++/16/bits/functexcept.h \
   /usr/include/c++/16/bits/functional_hash.h \
   /usr/include/c++/16/bits/hash_bytes.h \
+  /usr/include/c++/16/bits/intcmp.h \
   /usr/include/c++/16/bits/invoke.h \
   /usr/include/c++/16/bits/ios_base.h \
   /usr/include/c++/16/bits/istream.tcc \
@@ -251,6 +252,7 @@ CMakeFiles/calliope.dir/main.cpp.o: /home/bobywoby/dev/c++/calliope/main.cpp \
   /usr/include/c++/16/bits/stl_iterator_base_funcs.h \
   /usr/include/c++/16/bits/stl_iterator_base_types.h \
   /usr/include/c++/16/bits/stl_pair.h \
+  /usr/include/c++/16/bits/stl_relops.h \
   /usr/include/c++/16/bits/stl_tempbuf.h \
   /usr/include/c++/16/bits/stl_uninitialized.h \
   /usr/include/c++/16/bits/stl_vector.h \
@@ -339,6 +341,7 @@ CMakeFiles/calliope.dir/main.cpp.o: /home/bobywoby/dev/c++/calliope/main.cpp \
   /usr/include/c++/16/tuple \
   /usr/include/c++/16/type_traits \
   /usr/include/c++/16/typeinfo \
+  /usr/include/c++/16/utility \
   /usr/include/c++/16/vector \
   /usr/include/c++/16/x86_64-pc-linux-gnu/bits/atomic_word.h \
   /usr/include/c++/16/x86_64-pc-linux-gnu/bits/basic_file.h \
@@ -408,7 +411,11 @@ CMakeFiles/calliope.dir/main.cpp.o: /home/bobywoby/dev/c++/calliope/main.cpp \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stddef.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stdint.h
 
-calliope: /usr/lib/Scrt1.o \
+calliope: /opt/cuda/lib64/libcublas.so.13 \
+  /opt/cuda/lib64/libcublasLt.so.13 \
+  /opt/cuda/lib64/libcudart.so.13 \
+  /opt/cuda/targets/x86_64-linux/lib/stubs/libcuda.so \
+  /usr/lib/Scrt1.o \
   /usr/lib/crti.o \
   /usr/lib/crtn.o \
   /usr/lib/libc.so \
@@ -425,11 +432,18 @@ calliope: /usr/lib/Scrt1.o \
   /usr/lib/libasound.so \
   /usr/lib/libc.so.6 \
   /usr/lib/libc_nonshared.a \
+  /usr/lib/libdl.so.2 \
   /usr/lib/libgomp.so.1 \
   /usr/lib/libm.so.6 \
   /usr/lib/libmvec.so.1 \
+  /usr/lib/libpthread.so.0 \
+  /usr/lib/librt.so.1 \
+  /usr/lib32/libdl.so.2 \
   /usr/lib32/libgomp.so.1 \
+  /usr/lib32/libpthread.so.0 \
+  /usr/lib32/librt.so.1 \
   CMakeFiles/calliope.dir/main.cpp.o \
+  _deps/whispercpp-build/ggml/src/ggml-cuda/libggml-cuda.so.0.9.5 \
   _deps/whispercpp-build/ggml/src/libggml-base.so.0.9.5 \
   _deps/whispercpp-build/ggml/src/libggml-cpu.so.0.9.5 \
   _deps/whispercpp-build/ggml/src/libggml.so.0.9.5 \
@@ -443,6 +457,10 @@ _deps/whispercpp-build/ggml/src/libggml-cpu.so.0.9.5:
 _deps/whispercpp-build/ggml/src/libggml-base.so.0.9.5:
 
 CMakeFiles/calliope.dir/main.cpp.o:
+
+/usr/lib32/libpthread.so.0:
+
+/usr/lib32/libdl.so.2:
 
 /usr/lib/libmvec.so.1:
 
@@ -461,6 +479,12 @@ CMakeFiles/calliope.dir/main.cpp.o:
 /usr/lib/libm.so:
 
 /usr/lib/libgcc_s.so.1:
+
+/opt/cuda/lib64/libcudart.so.13:
+
+/opt/cuda/lib64/libcublasLt.so.13:
+
+/opt/cuda/lib64/libcublas.so.13:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stdint.h:
 
@@ -488,7 +512,11 @@ CMakeFiles/calliope.dir/main.cpp.o:
 
 /usr/include/math.h:
 
+/usr/lib/libpthread.so.0:
+
 /usr/include/locale.h:
+
+/usr/lib/librt.so.1:
 
 /usr/include/linux/types.h:
 
@@ -515,6 +543,8 @@ CMakeFiles/calliope.dir/main.cpp.o:
 /usr/include/c++/16/x86_64-pc-linux-gnu/bits/os_defines.h:
 
 /usr/include/c++/16/x86_64-pc-linux-gnu/bits/messages_members.h:
+
+/opt/cuda/targets/x86_64-linux/lib/stubs/libcuda.so:
 
 /usr/include/c++/16/x86_64-pc-linux-gnu/bits/gthr.h:
 
@@ -600,6 +630,8 @@ CMakeFiles/calliope.dir/main.cpp.o:
 
 /usr/include/c++/16/debug/assertions.h:
 
+/usr/lib32/librt.so.1:
+
 /usr/include/linux/sched/types.h:
 
 /usr/include/c++/16/cwchar:
@@ -637,6 +669,8 @@ CMakeFiles/calliope.dir/main.cpp.o:
 /usr/include/c++/16/bits/unicode.h:
 
 /usr/include/c++/16/bits/this_thread_sleep.h:
+
+/usr/include/c++/16/bits/string_view.tcc:
 
 /usr/include/bits/types/clock_t.h:
 
@@ -763,6 +797,8 @@ CMakeFiles/calliope.dir/main.cpp.o:
 /usr/include/bits/fp-fast.h:
 
 /usr/include/c++/16/bits/basic_string.tcc:
+
+/usr/include/c++/16/bits/stl_relops.h:
 
 /usr/include/bits/struct_rwlock.h:
 
@@ -902,6 +938,8 @@ _deps/whispercpp-build/ggml/src/libggml.so.0.9.5:
 
 /usr/include/alsa/asoundlib.h:
 
+_deps/whispercpp-build/ggml/src/ggml-cuda/libggml-cuda.so.0.9.5:
+
 /usr/include/bits/types/struct_sched_param.h:
 
 /usr/include/c++/16/cwctype:
@@ -1016,6 +1054,8 @@ _deps/whispercpp-src/include/whisper.h:
 
 /usr/include/bits/types/__sigval_t.h:
 
+/usr/lib/libdl.so.2:
+
 /usr/include/c++/16/bits/concept_check.h:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stddef.h:
@@ -1101,6 +1141,10 @@ _deps/whispercpp-src/include/whisper.h:
 /usr/include/bits/waitflags.h:
 
 /usr/include/bits/wctype-wchar.h:
+
+/usr/include/c++/16/bits/stringfwd.h:
+
+/usr/include/c++/16/bits/shared_ptr.h:
 
 /usr/include/stdio.h:
 
@@ -1190,6 +1234,10 @@ _deps/whispercpp-src/include/whisper.h:
 
 /usr/include/c++/16/bits/functional_hash.h:
 
+/usr/include/c++/16/bits/intcmp.h:
+
+/usr/include/c++/16/bits/move.h:
+
 /usr/include/c++/16/bits/iterator_concepts.h:
 
 /usr/include/c++/16/bits/locale_conv.h:
@@ -1209,8 +1257,6 @@ _deps/whispercpp-src/include/whisper.h:
 /usr/include/sys/ttydefaults.h:
 
 /usr/include/c++/16/bits/monostate.h:
-
-/usr/include/c++/16/bits/move.h:
 
 /usr/include/c++/16/bits/nested_exception.h:
 
@@ -1236,6 +1282,8 @@ _deps/whispercpp-src/include/whisper.h:
 
 /usr/include/c++/16/bits/ranges_cmp.h:
 
+/usr/include/c++/16/utility:
+
 /usr/include/c++/16/concepts:
 
 /usr/include/c++/16/bits/locale_classes.h:
@@ -1245,10 +1293,6 @@ _deps/whispercpp-src/include/whisper.h:
 /usr/include/bits/mathcalls-narrow.h:
 
 /usr/include/c++/16/bits/refwrap.h:
-
-/usr/include/c++/16/bits/shared_ptr.h:
-
-/usr/include/c++/16/bits/stringfwd.h:
 
 /usr/include/c++/16/bits/stl_vector.h:
 
@@ -1295,7 +1339,5 @@ _deps/whispercpp-src/include/whisper.h:
 /usr/include/c++/16/bits/stl_pair.h:
 
 /usr/include/c++/16/bits/stl_uninitialized.h:
-
-/usr/include/c++/16/bits/string_view.tcc:
 
 /usr/include/c++/16/bits/streambuf_iterator.h:

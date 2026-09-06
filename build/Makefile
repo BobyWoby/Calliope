@@ -214,6 +214,19 @@ ggml-cpu/fast:
 .PHONY : ggml-cpu/fast
 
 #=============================================================================
+# Target rules for targets named ggml-cuda
+
+# Build rule for target.
+ggml-cuda: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ggml-cuda
+.PHONY : ggml-cuda
+
+# fast build rule for target.
+ggml-cuda/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/whispercpp-build/ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/build.make _deps/whispercpp-build/ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/build
+.PHONY : ggml-cuda/fast
+
+#=============================================================================
 # Target rules for targets named whisper
 
 # Build rule for target.
@@ -266,6 +279,7 @@ help:
 	@echo "... ggml"
 	@echo "... ggml-base"
 	@echo "... ggml-cpu"
+	@echo "... ggml-cuda"
 	@echo "... whisper"
 	@echo "... main.o"
 	@echo "... main.i"

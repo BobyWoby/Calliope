@@ -7,7 +7,9 @@ calliope: \
   /usr/lib/libasound.so \
   _deps/whispercpp-build/ggml/src/libggml.so.0.9.5 \
   _deps/whispercpp-build/ggml/src/libggml-cpu.so.0.9.5 \
+  _deps/whispercpp-build/ggml/src/ggml-cuda/libggml-cuda.so.0.9.5 \
   _deps/whispercpp-build/ggml/src/libggml-base.so.0.9.5 \
+  /opt/cuda/targets/x86_64-linux/lib/stubs/libcuda.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/libstdc++.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/libm.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/libm.so \
@@ -40,7 +42,16 @@ calliope: \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/crtn.o \
   /usr/lib/ld-linux-x86-64.so.2 \
   /usr/lib32/libgomp.so.1 \
-  /usr/lib/libgomp.so.1
+  /usr/lib/libgomp.so.1 \
+  /opt/cuda/lib64/libcudart.so.13 \
+  /opt/cuda/lib64/libcublas.so.13 \
+  /opt/cuda/lib64/libcublasLt.so.13 \
+  /usr/lib32/libdl.so.2 \
+  /usr/lib/libdl.so.2 \
+  /usr/lib32/libpthread.so.0 \
+  /usr/lib/libpthread.so.0 \
+  /usr/lib32/librt.so.1 \
+  /usr/lib/librt.so.1
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/Scrt1.o:
 
@@ -58,7 +69,11 @@ _deps/whispercpp-build/ggml/src/libggml.so.0.9.5:
 
 _deps/whispercpp-build/ggml/src/libggml-cpu.so.0.9.5:
 
+_deps/whispercpp-build/ggml/src/ggml-cuda/libggml-cuda.so.0.9.5:
+
 _deps/whispercpp-build/ggml/src/libggml-base.so.0.9.5:
+
+/opt/cuda/targets/x86_64-linux/lib/stubs/libcuda.so:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/16/libstdc++.so:
 
@@ -125,3 +140,21 @@ _deps/whispercpp-build/ggml/src/libggml-base.so.0.9.5:
 /usr/lib32/libgomp.so.1:
 
 /usr/lib/libgomp.so.1:
+
+/opt/cuda/lib64/libcudart.so.13:
+
+/opt/cuda/lib64/libcublas.so.13:
+
+/opt/cuda/lib64/libcublasLt.so.13:
+
+/usr/lib32/libdl.so.2:
+
+/usr/lib/libdl.so.2:
+
+/usr/lib32/libpthread.so.0:
+
+/usr/lib/libpthread.so.0:
+
+/usr/lib32/librt.so.1:
+
+/usr/lib/librt.so.1:
