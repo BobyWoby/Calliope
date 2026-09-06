@@ -1,4 +1,5 @@
 # Calliope
+# Note: This project was largely vibe-coded
 
 Calliope is a local, push-to-talk voice transcriber for Linux. Hold a keyboard
 shortcut to record from the default ALSA microphone, release it to transcribe
